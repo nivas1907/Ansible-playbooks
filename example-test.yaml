@@ -12,7 +12,7 @@
        action: yum pkg=docker state=present
 
      - name: start docker server on host Machines
-       actions: service name=docker state=started
+       action: service name=docker state=started
 
      - name: Stop the docker server on host Machines
        action: service name=docker state=stopped
