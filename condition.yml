@@ -15,7 +15,7 @@
             name: {{item}}
             state: present
           when: check_result.rc != 0
-    - with_items:
+    - loop:
         - git
         - java
         - python3
