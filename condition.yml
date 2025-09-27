@@ -1,0 +1,12 @@
+---
+- hosts: webservers
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install git if not installed
+      yum: 
+        name: git
+        state: present
+      when: git_check.rc != 0
+
