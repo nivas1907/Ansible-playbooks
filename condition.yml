@@ -4,6 +4,10 @@
   become: yes
   connection: ssh
   tasks:
+    - name: Check if git is installed
+      command: which git
+      register: git_check
+      ignore_errors: true
     - name: install git if not installed
       yum: 
         name: git
