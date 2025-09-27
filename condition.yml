@@ -12,7 +12,7 @@
           ignore_errors: true
         - name: install {{item}} if not installed
           yum: 
-            name: {{item}}
+            name: "{{ item }}"
             state: present
           when: check_result.rc != 0
     - loop:
