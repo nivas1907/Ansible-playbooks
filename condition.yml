@@ -4,15 +4,17 @@
   become: yes
   connection: ssh
   tasks:
-    - name: Check if git is installed
-      command: which {{item}}
-      register: check_result
-      ignore_errors: true
-    - name: install {{item}} if not installed
-      yum: 
-        name: {{item}}
-        state: present
-      when: check_result.rc != 0
+    - name: sd
+      block:
+        - name: Check if {{ item }} is installed
+          command: which {{item}}
+          register: check_result
+          ignore_errors: true
+        - name: install {{item}} if not installed
+          yum: 
+            name: {{item}}
+            state: present
+          when: check_result.rc != 0
     - with_items:
         - git
         - java
