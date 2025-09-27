@@ -19,7 +19,7 @@
  
     - name: Clone Flipkart Clone repository
       git:
-        repo: "https://github.com/Msocial123/Flipkart-Clone.git"
+        repo: "https://github.com/Msocial123/Flipkart-Clone.git/."
         dest: "/home/ansible/Flipkart-Clone"
         version: master
         force: yes
