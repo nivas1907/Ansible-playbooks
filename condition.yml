@@ -5,12 +5,16 @@
   connection: ssh
   tasks:
     - name: Check if git is installed
-      command: which git
-      register: git_check
+      command: which {{item}}
+      register: check_result
       ignore_errors: true
-    - name: install git if not installed
+    - name: install {{item}} if not installed
       yum: 
-        name: git
+        name: {{item}}
         state: present
-      when: git_check.rc != 0
+      when: check_result.rc != 0
+    - with_items:
+        - git
+        - java
+        - python3
 
