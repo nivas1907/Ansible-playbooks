@@ -3,20 +3,21 @@
   user: ansible
   become: yes
   connection: ssh
+
   tasks:
-    - name: sd
+    - name: Check and install packages if missing
       block:
         - name: Check if {{ item }} is installed
-          command: which {{item}}
+          command: "which {{ item }}"
           register: check_result
           ignore_errors: true
-        - name: install {{item}} if not installed
-          yum: 
+
+        - name: Install {{ item }} if not installed
+          yum:
             name: "{{ item }}"
             state: present
           when: check_result.rc != 0
-    - loop:
+      loop:
         - git
         - java
         - python3
-
