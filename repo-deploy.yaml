@@ -21,12 +21,12 @@
       git:
         repo: "https://github.com/Msocial123/Flipkart-Clone.git/."
         dest: "/home/ansible/Flipkart-Clone"
-        version: master
+        version: main
         force: yes
  
     - name: Copy application code to web root
       copy:
-        src: "/home/ansible/Flipkart-Clone/."
+        src: "/home/ansible/Flipkart-Clone/"
         dest: "/var/www/html/"
         owner: apache
         group: apache
